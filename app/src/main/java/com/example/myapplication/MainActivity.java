@@ -57,7 +57,19 @@ public class MainActivity extends AppCompatActivity {
         clearButton = findViewById(R.id.clearButton);
 
 
+        
+        //Savvas Pollaplasiasmos
+        multiButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Value1 = Float.parseFloat(FirstNumber.getText() +"");
 
+                Value2 = Float.parseFloat(SecondNumber.getText() +"");
+
+                ResultBox.setText(Value1 * Value2 + "");
+
+            }
+        });
 
 
         addButton.setOnClickListener(new View.OnClickListener() {
