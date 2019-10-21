@@ -9,15 +9,14 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button divideButton,addButton,subButton,multiButton,clearButton,
+    Button divideButton,addButton,subButton,multiButton,clearButton,equalButton,
             bt1,bt2,bt3,bt4,bt5,bt6,bt7,bt8,bt9,bt0;
 
-    TextView ResultBox,FirstNumber, SecondNumber;
+    TextView ResultBox,FirstNumber,SecondNumber,symbolView;
 
     float Value1,Value2;
-    
 
-
+    boolean addFLAG=false;
 
 
 
@@ -50,11 +49,15 @@ public class MainActivity extends AppCompatActivity {
 
         FirstNumber = findViewById(R.id.FirstNumber);
 
+        symbolView = findViewById(R.id.symbolView);
+
         SecondNumber = findViewById(R.id.SecondNumber);
 
         ResultBox = findViewById(R.id.ResultBox);
 
         clearButton = findViewById(R.id.clearButton);
+
+        equalButton = findViewById(R.id.equalButton);
 
 
         
@@ -75,12 +78,11 @@ public class MainActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Value1 = Float.parseFloat(FirstNumber.getText() +"");
+                SecondNumber.setText(FirstNumber.getText());
+                FirstNumber.setText("");
+                symbolView.setText("+");
 
-                Value2 = Float.parseFloat(SecondNumber.getText() +"");
-
-                ResultBox.setText(Value1 + Value2 + "");
-
+                addFLAG=true;
             }
         });
 
@@ -96,12 +98,29 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        equalButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (addFLAG=true)
+                {   Value1 = Float.parseFloat(FirstNumber.getText() +"");
+
+                    Value2 = Float.parseFloat(SecondNumber.getText() +"");
+
+                    ResultBox.setText(Value1 + Value2 + "");}
+            }
+        });
+
+
+
+
 
         clearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 FirstNumber.setText("");
+
+                SecondNumber.setText("");
 
                 ResultBox.setText("");
             }
