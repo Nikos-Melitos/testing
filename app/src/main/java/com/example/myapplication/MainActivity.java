@@ -91,10 +91,11 @@ public class MainActivity extends AppCompatActivity {
 
                 Value2 = Float.parseFloat(SecondNumber.getText() +"");
 
-                ResultBox.setText(Value1 + Value2 + "");
+                ResultBox.setText(Value1 - Value2 + "");
 
             }
         });
+
 
         clearButton.setOnClickListener(new View.OnClickListener() {
             @Override
