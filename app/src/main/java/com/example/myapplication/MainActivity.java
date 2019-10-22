@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     float Value1,Value2;
 
-    boolean addFLAG=false;
+    boolean addFLAG=false,subFLAG=false,divFLAG=false,multiFLAG=false;
 
 
 
@@ -69,11 +69,16 @@ public class MainActivity extends AppCompatActivity {
         divideButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Value1 = Float.parseFloat(FirstNumber.getText() +"");
+                divFLAG=true;
+                addFLAG=false;
+                subFLAG=false;
+                multiFLAG=false;
 
-                Value2 = Float.parseFloat(SecondNumber.getText() +"");
+                SecondNumber.setText(FirstNumber.getText());
+                FirstNumber.setText("");
+                symbolView.setText("/");
 
-                ResultBox.setText(Value1  / Value2 + "");
+
 
             }
         });
@@ -82,16 +87,20 @@ public class MainActivity extends AppCompatActivity {
         multiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Value1 = Float.parseFloat(FirstNumber.getText() +"");
+                SecondNumber.setText(FirstNumber.getText());
+                FirstNumber.setText("");
+                symbolView.setText("*");
 
-                Value2 = Float.parseFloat(SecondNumber.getText() +"");
+                multiFLAG=true;
 
-                ResultBox.setText(Value1 * Value2 + "");
+                divFLAG=false;
+                addFLAG=false;
+                subFLAG=false;
 
             }
         });
 
-
+        //Kyriakos
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,17 +109,26 @@ public class MainActivity extends AppCompatActivity {
                 symbolView.setText("+");
 
                 addFLAG=true;
+
+                divFLAG=false;
+                subFLAG=false;
+                multiFLAG=false;
             }
         });
 
-        subButton.setOnClickListener(new View.OnClickListener() {
+        //Bertkas Afairesi
+         subButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Value1 = Float.parseFloat(FirstNumber.getText() +"");
+                SecondNumber.setText(FirstNumber.getText());
+                FirstNumber.setText("");
+                symbolView.setText("-");
 
-                Value2 = Float.parseFloat(SecondNumber.getText() +"");
+                subFLAG=true;
 
-                ResultBox.setText(Value1 - Value2 + "");
+                divFLAG=false;
+                addFLAG=false;
+                multiFLAG=false;
 
             }
         });
@@ -118,12 +136,47 @@ public class MainActivity extends AppCompatActivity {
         equalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (addFLAG=true)
-                {   Value1 = Float.parseFloat(FirstNumber.getText() +"");
+                if (addFLAG == true) {
+                    Value1 = Float.parseFloat(FirstNumber.getText() + "");
+
+                    Value2 = Float.parseFloat(SecondNumber.getText() + "");
+
+                    ResultBox.setText(Value1 + Value2 + "");
+                    addFLAG = false;
+                }
+                else if (divFLAG == true)
+                {
+                    Value1 = Float.parseFloat(FirstNumber.getText() + "");
+
+                    Value2 = Float.parseFloat(SecondNumber.getText() + "");
+
+                    ResultBox.setText(Value1 / Value2 + "");
+
+                    divFLAG=false;
+                }
+                else if(subFLAG==true)
+                {
+                    Value1 = Float.parseFloat(FirstNumber.getText() +"");
 
                     Value2 = Float.parseFloat(SecondNumber.getText() +"");
 
-                    ResultBox.setText(Value1 + Value2 + "");}
+                    ResultBox.setText(Value1 - Value2 + "");
+
+                    subFLAG=false;
+
+                }
+                else if(multiFLAG==true)
+                {
+                    Value1 = Float.parseFloat(FirstNumber.getText() +"");
+
+                    Value2 = Float.parseFloat(SecondNumber.getText() +"");
+
+                    ResultBox.setText(Value1 * Value2 + "");
+
+                    multiFLAG=false;
+
+                }
+
             }
         });
 
@@ -140,6 +193,8 @@ public class MainActivity extends AppCompatActivity {
                 SecondNumber.setText("");
 
                 ResultBox.setText("");
+
+                symbolView.setText("");
             }
         });
 
